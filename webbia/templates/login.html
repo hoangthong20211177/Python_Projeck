@@ -1,0 +1,37 @@
+<!-- login.html -->
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
+
+{% extends 'base.html' %}
+
+
+{% block title %}Đăng nhập{% endblock %}
+
+
+
+{% block content %}
+<nav>
+
+    <ul class="nav-links">
+        <li><a href="{{ url_for('index') }}">Trang Chủ</a></li>
+        <li><a href="{{ url_for('register') }}">Đăng Ký</a></li>
+       
+    </ul>
+</nav>
+    <div class="center">
+        <h2>Đăng nhập</h2>
+        <form method="post" action="{{ url_for('login') }}">
+            <label for="username">Tên đăng nhập:</label><br>
+            <input type="text" id="username" name="username" required><br>
+            <label for="password">Mật khẩu:</label><br>
+            <input type="password" id="password" name="password" required><br>
+            <input type="submit" value="Đăng nhập">
+        </form>
+           
+        </form>
+    </div>
+
+
+{% endblock %}

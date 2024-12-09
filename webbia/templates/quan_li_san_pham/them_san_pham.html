@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Thêm Sản Phẩm
+{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/them_san_pham.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h1>Thêm sản phẩm mới</h1>
+    <form method="POST" action="{{ url_for('quan_ly_san_pham.them_san_pham') }}">
+        <label for="TenSP">Tên SP:</label>
+        <input type="text" id="TenSP" name="TenSP"><br>
+        <label for="Gia">Giá:</label>
+        <input type="number" id="Gia" name="Gia"><br>
+        <label for="SoLuong">Số Lượng:</label>
+        <input type="number" id="SoLuong" name="SoLuong"><br>
+        <button type="submit">Thêm sản phẩm</button>
+    </form>
+    <a href="/quan_ly_san_pham.quanlysanpham" class="back-button">Quay lại</a>
+
+</div>
+{% endblock %}

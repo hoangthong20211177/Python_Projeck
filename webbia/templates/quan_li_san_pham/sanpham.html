@@ -1,0 +1,60 @@
+<!-- quanlysanpham.html -->
+{% extends 'base.html' %}
+
+{% block title %}
+    Quản Lí Sản Phẩm
+{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sanpham.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    <script>
+        function validateSearchForm(event) {
+            const searchInput = document.querySelector('input[name="keyword"]');
+            if (searchInput.value.trim() === '') {
+                alert('Vui lòng nhập từ khóa tìm kiếm');
+                event.preventDefault(); // Ngăn chặn form submit
+            }
+        }
+    </script>
+
+{% endblock %}
+
+{% block content %}
+    <h1>Quản lý Sản phẩm</h1>
+    <div class="action-links">
+        <a href="{{ url_for('quan_ly_san_pham.them_san_pham') }}">Thêm sản phẩm mới</a>
+    </div>
+    <div class="search-form">
+        <form method="GET" action="{{ url_for('quan_ly_san_pham.quanlysanpham') }}" onsubmit="validateSearchForm(event)">
+            <input type="text" name="keyword" placeholder="Tìm kiếm sản phẩm">
+            <button type="submit">Tìm kiếm</button>
+        </form>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Mã Sản Phẩm</th>
+                <th>Tên Sản Phẩm</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Tùy chọn</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in sanphams %}
+            <tr>
+                <td>{{ product.MaSP }}</td>
+                <td>{{ product.TenSP }}</td>
+                <td>{{ product.Gia }}</td>
+                <td>{{ product.SoLuong }}</td>
+                <td>
+                    <a href="{{ url_for('quan_ly_san_pham.sua_san_pham', MaSP=product.MaSP) }}" class="edit-button">Sửa</a>
+                    <a href="{{ url_for('quan_ly_san_pham.xoa_san_pham', MaSP=product.MaSP) }}" class="delete-button" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?')">Xóa</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

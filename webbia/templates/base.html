@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Flask App{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block head %}{% endblock %}
+    <script>
+        // Function to confirm logout
+        function confirmLogout() {
+            if (confirm("Bạn có chắc chắn muốn đăng xuất?")) {
+                window.location.href = "{{ url_for('logout') }}";
+            } else {
+                // Do nothing or handle cancellation
+            }
+        }
+    </script>
+</head>
+<body>
+
+<nav>
+    <ul class="menu-bar">
+        {% if 'loggedin_admin' in session %}
+            <li><a href="{{ url_for('quan_ly_ban.quanlybillards') }}">Quản lý Billiards</a></li>
+            <li><a href="{{ url_for('quan_ly_nhan_vien.quanlynhanvien') }}">Quản lý Nhân viên</a></li>
+            <li><a href="{{ url_for('quan_ly_san_pham.quanlysanpham') }}">Quản lý Sản phẩm</a></li>
+            <li><a href="{{ url_for('quan_ly_khach_hang.quanlykhachhang') }}">Quản lý Khách hàng</a></li>
+            <li><a href="{{ url_for('thong_ke.doanhthu') }}">Doanh thu và hóa đơn</a></li>
+            <li><a href="#" onclick="confirmLogout();">Đăng xuất</a></li>
+        {% elif 'loggedin_nhanvien' in session %}
+            <li><a href="{{ url_for('quan_ly_ban.quanlybillards') }}">Quản lý Billiards</a></li>
+            <li><a href="{{ url_for('quan_ly_khach_hang.quanlykhachhang') }}">Quản lý Khách hàng</a></li>
+            <li><a href="#" onclick="confirmLogout();">Đăng xuất</a></li>
+        {% endif %}
+
+        {% if 'loggedin' not in session %}
+            <li><a href="{{ url_for('login') }}">Đăng nhập</a></li>
+        {% endif %}
+    </ul>
+</nav>
+
+<div class="content">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>

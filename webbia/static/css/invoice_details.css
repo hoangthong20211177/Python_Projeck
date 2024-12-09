@@ -1,0 +1,67 @@
+.invoice-details {
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff; /* Màu nền trắng cho phần chi tiết hóa đơn */
+    padding: 20px; /* Phần lề bao quanh */
+    border: 1px solid #ddd; /* Đường viền xám xung quanh */
+    border-radius: 8px; /* Bo góc */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Đổ bóng nhẹ */
+}
+
+.details-section {
+    flex: 1;
+    margin: 0 10px;
+    box-sizing: border-box;
+}
+
+.details-section h2 {
+    text-align: center;
+    margin-bottom: 10px; /* Khoảng cách dưới tiêu đề */
+}
+
+.details-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.details-section table, .details-section th, .details-section td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.details-section th {
+    background-color: #f2f2f2; /* Màu nền xám nhạt cho tiêu đề cột */
+}
+
+/* Thêm màu cho các bảng */
+.details-section:nth-child(1) table,
+.details-section:nth-child(2) table {
+    background-color: #e0f7fa; /* Màu nền xanh nhạt cho các bảng thông tin */
+}
+/* Button style */
+.invoice-details button {
+    padding: 10px 20px;
+    background-color: #4caf50; /* Màu nền xanh lá cây */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.invoice-details button:hover {
+    background-color: #45a049; /* Màu nền xanh lá cây nhạt khi di chuột vào */
+}
+
+/* Anchor tag style */
+.invoice-details a {
+    color: #007bff; /* Màu văn bản mặc định cho thẻ a */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.invoice-details a:hover {
+    color: #0056b3; /* Màu văn bản thay đổi khi di chuột vào */
+}

@@ -1,0 +1,27 @@
+from flask import Flask, render_template
+import mysql.connector
+
+app = Flask(__name__)
+
+# Database connection
+def get_db_connection():
+    connection = mysql.connector.connect(
+        host='localhost',        # replace with your MySQL server host
+        user='yourusername',     # replace with your MySQL username
+        password='yourpassword', # replace with your MySQL password
+        database='yourdatabase'  # replace with your MySQL database name
+    )
+    return connection
+
+@app.route('/')
+def index():
+    connection = get_db_connection()
+    cursor = connection.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM banbida1")
+    tables = cursor.fetchall()
+    cursor.close()
+    connection.close()
+    return render_template('index.html', tables=tables)
+
+if __name__ == '__main__':
+    app.run(debug=True)

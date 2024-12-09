@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Tìm kiếm công việc
+{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/phan_cong_viec.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+{% endblock %}
+
+{% block content %}
+    <h1>Tìm kiếm công việc</h1>
+    
+    <form method="POST" action="{{ url_for('quan_ly_nhan_vien.tim_kiem_cong_viec') }}">
+        <label for="search_term">Từ khóa:</label>
+        <input type="text" id="search_term" name="search_term" required>
+        <button type="submit">Tìm kiếm</button>
+    </form>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Họ và tên</th>
+                <th>Công việc</th>
+                <th>Ngày làm</th>
+                <th>Giờ bắt đầu</th>
+                <th>Giờ kết thúc</th>
+                <th>Lý do phạt</th>
+                <th>Số tiền phạt</th>
+                <th>Chức năng</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in thong_tin %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>{{ row[4] }}</td>
+                    <td>{{ row[5] }}</td>
+                    <td>{{ row[6] }}</td>
+                    <td><a href="{{ url_for('quan_ly_nhan_vien.sua_cong_viec', id=row[7]) }}">Sửa</a> | <a href="{{ url_for('quan_ly_nhan_vien.xoa_cong_viec', id=row[7]) }}" onclick="return confirm('Bạn có chắc muốn xóa?')">Xóa</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <a href="{{ url_for('quan_ly_nhan_vien.phan_cong_viec') }}" class="back-button">Quay lại</a>
+{% endblock %}

@@ -1,0 +1,25 @@
+.nav-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    float: left;
+    margin-right: 10px; /* Khoảng cách giữa các mục */
+}
+
+.nav-links li a {
+    display: block;
+    color: white; /* Màu chữ */
+    text-align: center;
+    padding: 10px 15px;
+    text-decoration: none;
+    background-color: #c05b5b; /* Màu nền */
+    transition: background-color 0.3s ease;
+    border-radius: 5px; /* Đường viền cong */
+}
+
+.nav-links li a:hover {
+    background-color: #632121; /* Màu nền khi hover */
+}

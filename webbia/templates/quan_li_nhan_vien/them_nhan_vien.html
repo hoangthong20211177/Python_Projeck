@@ -1,0 +1,41 @@
+<!-- them_nhan_vien.html -->
+{% extends 'base.html' %}
+
+{% block title %}
+    Thêm Nhân Viên
+{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/them_nhan_vien.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2>Thêm Nhân Viên mới</h2>
+        <form method="post">
+            <label for="username">Tên Đăng Nhập:</label>
+            <input type="text" id="username" name="username" required
+                   pattern="^[a-zA-Z0-9]{6,}$"
+                   title="Tên đăng nhập phải có ít nhất 6 ký tự và chỉ chấp nhận chữ cái và số">
+
+            <label for="password">Mật Khẩu:</label>
+            <input type="text" id="password" name="password" required
+                   pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                   title="Mật khẩu phải có ít nhất 8 ký tự, bao gồm ít nhất một chữ hoa, một chữ thường, một số và một ký tự đặc biệt">
+
+            <label for="full_name">Họ Tên:</label>
+            <input type="text" id="full_name" name="full_name" required>
+
+            <label for="phone_number">Số điện thoại:</label>
+            <input type="number" id="phone_number" name="phone_number" required>
+
+            <label for="address">Địa chỉ:</label>
+            <input type="text" id="address" name="address" required>
+
+            <input type="submit" value="Thêm Nhân Viên">
+        </form>
+        <a href="/quan_ly_nhan_vien.quanlynhanvien" class="back-button">Quay lại</a>
+    </div>
+{% endblock %}

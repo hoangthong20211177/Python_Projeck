@@ -1,0 +1,64 @@
+<!-- templates/doanhthu.html -->
+{% extends "base.html" %}
+
+{% block title %}Doanh Thu{% endblock %}
+
+{% block head %}
+{{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/banbia.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+
+{% block content %}
+    <h1>Doanh Thu</h1>
+    <div class="btn-container">
+        <button onclick="loadRevenueData('week')">Tuần</button>
+        <button onclick="loadRevenueData('month')">Tháng</button>
+        <button onclick="loadRevenueData('year')">Năm</button>
+        <a href="{{ url_for('thong_ke.invoices') }}"><button>Xem Danh Sách Hóa Đơn</button></a>
+    </div>
+    <div class="chart-container">
+        <canvas id="revenueChart"></canvas>
+    </div>
+    <script>
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+        let revenueChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Doanh Thu',
+                    data: [],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        function loadRevenueData(period) {
+            fetch(`/revenue/${period}`)
+                .then(response => response.json())
+                .then(data => {
+                    const labels = data.map(item => item.date);
+                    const revenues = data.map(item => item.revenue);
+                    revenueChart.data.labels = labels;
+                    revenueChart.data.datasets[0].data = revenues;
+                    revenueChart.update();
+                });
+        }
+
+        // Load weekly revenue data by default
+        loadRevenueData('week');
+    </script>
+{% endblock %}
