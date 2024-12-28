@@ -1,0 +1,80 @@
+body {
+  
+    background-image: url('../images/nen3.jpg');
+    background-size: cover; /* Đảm bảo hình nền được phủ hết toàn bộ màn hình */
+
+font-family: Arial, sans-serif;
+}
+/* Định dạng cho form đăng ký */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 15px; /* Tăng padding để nút to ra */
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px; /* Tăng kích thước chữ */
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Căn giữa form */
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/* Định dạng cho nút Đăng ký */
+.btn-primary {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-primary:active {
+    background-color: #0056b3;
+    box-shadow: none;
+    transform: translateY(1px);
+}

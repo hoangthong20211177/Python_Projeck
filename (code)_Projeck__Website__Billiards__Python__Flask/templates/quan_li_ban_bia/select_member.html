@@ -1,0 +1,78 @@
+<!-- login.html -->
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/css_ban/select_member.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+{% endblock %}
+
+{% extends 'base.html' %}
+
+
+{% block title %}Chọn khách hàng{% endblock %}
+
+
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+
+</head>
+<body>
+    <h2>Chọn Thành Viên</h2>
+    <p>Chọn thành viên cho hóa đơn số {{ hoadon.MaHoaDon }}</p>
+    
+    <div class="invoice-info">
+        <p><strong>Thông tin hóa đơn:</strong></p>
+        <ul>
+            <li><strong>Mã Hóa Đơn:</strong> {{ hoadon.MaHoaDon }}</li>
+            <li><strong>Thời Gian Bắt Đầu:</strong> {{ hoadon.ThoiGianBatDau }}</li>
+            <li><strong>Thời Gian Kết Thúc:</strong> {{ hoadon.ThoiGianKetThuc }}</li>
+            <li><strong>Thành Tiền Thời Gian Chơi:</strong> {{ hoadon.ThanhTienThoigianchoi }}</li>
+            <li><strong>Thành Tiền Order:</strong> {{ hoadon.ThanhTienOrder }}</li>
+            <li><strong>Tổng Tiền:</strong> {{ hoadon.TongTien }}</li>
+        </ul>
+    </div>
+    
+    <form action="{{ url_for('quan_ly_ban.update_invoice_member') }}" method="POST">
+        <input type="hidden" name="MaHoaDon" value="{{ hoadon.MaHoaDon }}">
+        <label for="searchMember">Chọn thành viên:</label>
+        <input type="text" id="searchMember" name="searchMember" placeholder="Tìm kiếm thành viên...">
+        <div id="searchResult"></div>
+        <button type="submit">Cập nhật</button>
+    </form>
+
+    <script>
+        document.getElementById('searchMember').addEventListener('input', function() {
+            var searchQuery = this.value.trim();
+            if (searchQuery.length > 0) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', '/search_member?q=' + searchQuery, true);
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                        var searchResult = JSON.parse(xhr.responseText);
+                        displaySearchResult(searchResult);
+                    }
+                };
+                xhr.send();
+            } else {
+                document.getElementById('searchResult').innerHTML = '';
+            }
+        });
+
+        function displaySearchResult(results) {
+            var searchResultDiv = document.getElementById('searchResult');
+            searchResultDiv.innerHTML = ''; // Clear previous results
+            results.forEach(function(member) {
+                var memberOption = document.createElement('div');
+                memberOption.innerHTML = '<input type="radio" name="MaMember" value="' + member.MaMember + '"> ' + member.TenMember;
+                searchResultDiv.appendChild(memberOption);
+            });
+        }
+    </script>
+</body>
+</html>
+{% endblock %}

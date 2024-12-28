@@ -1,0 +1,47 @@
+.menu-bar {
+    border-radius: 25px;
+    height: fit-content;
+    display: inline-flex;
+    background-color: rgba(66, 255, 239, 0.7); /* Màu nền sáng hơn */
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);  
+    align-items: center;
+    padding: 0 10px;
+    margin: 50px 0 0 0;
+    border: 2px solid #e0e0e0; /* Thêm viền sáng xung quanh */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ nhẹ để viền nổi bật */
+}
+
+.menu-bar li {
+    list-style: none;
+    color: #333; /* Màu chữ tối nhưng dễ đọc */
+    font-family: sans-serif;
+    font-weight: bold;
+    padding: 12px 16px;
+    margin: 0 8px;
+    position: relative;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.menu-bar li::before {
+    content: " ";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    transition: .2s;
+    border-radius: 25px;
+}
+
+.menu-bar li:hover {
+    color: #333; /* Giữ màu chữ đậm để dễ đọc */
+}
+
+.menu-bar li:hover::before {
+    background: linear-gradient(to bottom, #ffecb3, #ffee58); /* Màu nền sáng với sắc vàng */
+    box-shadow: 0px 3px 20px 0px rgba(0, 0, 0, 0.2); /* Thêm bóng nhẹ */
+    transform: scale(1.1);
+}

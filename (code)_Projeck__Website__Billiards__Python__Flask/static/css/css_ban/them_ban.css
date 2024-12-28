@@ -1,0 +1,103 @@
+/* Thiết lập lại một số kiểu mặc định */
+body {
+    background-image: url('../../images/nen4.jpg');
+    background-size: cover; /* Đảm bảo hình nền được phủ hết toàn bộ màn hình */
+    font-family: Arial, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Thiết kế chung cho trang */
+
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    margin: 30px auto;
+    background-color: #ffeff6f3; /* Màu nền trắng cho phần nội dung chính */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bóng đổ nhẹ cho container */
+}
+
+/* Tiêu đề */
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Form */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+input[type="text"] {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: #007bff; /* Đổi màu viền khi ô nhập được chọn */
+}
+
+/* Nút gửi */
+input[type="submit"] {
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3; /* Màu nền khi di chuột qua */
+}
+
+/* Nút quay lại */
+.back-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #dc3545;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #c82333; /* Màu nền khi di chuột qua */
+}
+
+/* Thêm một số khoảng cách bên ngoài và các hiệu ứng */
+.container {
+    padding: 30px;
+}
+
+@media (max-width: 768px) {
+    /* Đảm bảo giao diện vẫn đẹp khi màn hình nhỏ */
+    .container {
+        width: 90%;
+    }
+}

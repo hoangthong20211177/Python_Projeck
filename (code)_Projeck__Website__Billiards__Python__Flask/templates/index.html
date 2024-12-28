@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quán Bi-a </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/index.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Billiards </h1>
+            <nav>
+                <ul>
+                    <li><a href="#about">Giới thiệu</a></li>
+                    <li><a href="#services">Dịch vụ</a></li>
+                    <li><a href="#contact">Liên hệ</a></li>
+                    <li><a href="{{ url_for('login') }}">Đăng Nhập</a></li>
+<li><a href="{{ url_for('register') }}">Đăng Ký</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2>Giới thiệu</h2>
+            <p>Chào mừng bạn đến với Quán Bi-a , nơi lý tưởng để tận hưởng những trận đấu bi-a sôi động và thư giãn cùng bạn bè.</p>
+        </div>
+    </section>
+
+    <section id="services" class="section">
+        <div class="container">
+            <h2>Dịch vụ</h2>
+            <div class="service-list">
+                <div class="service">
+                    <h3>Thuê bàn bi-a</h3>
+                    <p>Chúng tôi có nhiều loại bàn bi-a chất lượng cao để bạn lựa chọn.</p>
+                </div>
+                <div class="service">
+                    <h3>Đào tạo</h3>
+                    <p>Các khóa học từ cơ bản đến nâng cao dành cho mọi lứa tuổi.</p>
+                </div>
+                <div class="service">
+                    <h3>Giải đấu</h3>
+                    <p>Tham gia các giải đấu bi-a hàng tháng và giành những phần thưởng hấp dẫn.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h2>Liên hệ</h2>
+            <p>Địa chỉ: 123 Đường ABC, Thành phố </p>
+            <p>Điện thoại: 0123 456 789</p>
+            <p>Email: info@quanzia.com</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Quán Bi-a . All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+
+

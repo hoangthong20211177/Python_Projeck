@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Chi Tiết Hóa Đơn
+{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/css_ban/invoice_details.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+
+    <script>
+        function addToOrder(maSP, maHoaDon, maBan) {
+            var soLuong = prompt("Nhập số lượng:", "1");
+            if (soLuong != null) {
+                // Submit form with product details
+                var form = document.createElement("form");
+                form.setAttribute("method", "post");
+                form.setAttribute("action", "{{ url_for('quan_ly_ban.add_to_order') }}");
+
+                var maHoaDonInput = document.createElement("input");
+                maHoaDonInput.setAttribute("type", "hidden");
+                maHoaDonInput.setAttribute("name", "MaHoaDon");
+                maHoaDonInput.setAttribute("value", maHoaDon);
+                form.appendChild(maHoaDonInput);
+
+                var maSPInput = document.createElement("input");
+                maSPInput.setAttribute("type", "hidden");
+                maSPInput.setAttribute("name", "MaSP");
+                maSPInput.setAttribute("value", maSP);
+                form.appendChild(maSPInput);
+
+                var maBanInput = document.createElement("input");
+                maBanInput.setAttribute("type", "hidden");
+                maBanInput.setAttribute("name", "MaBan");
+                maBanInput.setAttribute("value", maBan);
+                form.appendChild(maBanInput);
+
+                var soLuongInput = document.createElement("input");
+                soLuongInput.setAttribute("type", "hidden");
+                soLuongInput.setAttribute("name", "SoLuong");
+                soLuongInput.setAttribute("value", soLuong);
+                form.appendChild(soLuongInput);
+
+                document.body.appendChild(form);
+                form.submit();
+            }
+        }
+    </script>
+{% endblock %}
+
+{% block content %}
+    <h1>Chi Tiết Hóa Đơn</h1>
+
+    </form>
+  
+    <div class="invoice-details">
+        <form action="{{ url_for('quan_ly_ban.ket_thuc_hoadon') }}" method="POST">
+            <input type="hidden" name="MaHoaDon" value="{{ hoadon.MaHoaDon }}">
+              <a href="{{ url_for('quan_ly_ban.quanlybillards') }}">Quay lại</a>
+            <button type="submit">Kết thúc</button>
+        <div class="details-section">
+            <h2>Thông Tin Hóa Đơn</h2>
+            <table>
+                <tr>
+                    <th>Mã Hóa Đơn</th>
+                    <td>{{ hoadon.MaHoaDon }}</td>
+                </tr>
+                <tr>
+                    <th>Tên Bàn</th>
+                    <td>{{ hoadon.TenBan }}</td>
+                </tr>
+                <tr>
+                    <th>Thời Gian Bắt Đầu</th>
+                    <td>{{ hoadon.ThoiGianBatDau }}</td>
+                </tr>
+                <tr>
+                    <th>Thời Gian Kết Thúc</th>
+                    <td>{{ hoadon.ThoiGianKetThuc }}</td>
+                </tr>
+                <tr>
+                    <th>Thành Tiền Thời Gian Chơi</th>
+                    <td>{{ hoadon.ThanhTienThoigianchoi }}</td>
+                </tr>
+                <tr>
+                    <th>Thành Tiền Order</th>
+                    <td>{{ hoadon.ThanhTienOrder }}</td>
+                </tr>
+                <tr>
+                    <th>Tổng Tiền</th>
+                    <td>{{ hoadon.TongTien }}</td>
+                </tr>
+                <tr>
+                    <th>Ngày Tạo</th>
+                    <td>{{ hoadon.NgayTao }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="details-section">
+            <h2>Sản Phẩm Đã Order</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tên Sản Phẩm</th>
+                        <th>Thành Tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in ordered_products %}
+                    <tr>
+                        <td>{{ product.TenSP }}</td>
+                        <td>{{ product.SoLuong * product.Gia }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="details-section">
+            <h2>Danh Sách Sản Phẩm</h2>
+            <div class="product-grid">
+                {% for product in products %}
+                <div class="product-item">
+                    <a href="javascript:void(0);" onclick="addToOrder('{{ product.MaSP }}', '{{ hoadon.MaHoaDon }}', '{{ hoadon.MaBan }}')">
+                        {{ product.TenSP }}
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

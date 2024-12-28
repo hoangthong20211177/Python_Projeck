@@ -1,0 +1,51 @@
+<!-- banbia.html -->
+{% extends 'base.html' %}
+
+{% block title %}
+    Quản Lí Bàn
+{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/css_ban/banbia.css') }}">
+{% endblock %}
+
+{% block content %}
+    <h1></h1>
+    <div class="action-links">
+        <a href="/themban">Thêm Bàn mới</a>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Tên Bàn</th>
+                <th>Loại Bida</th>
+                <th>Tình Trạng</th>
+                <th>Thao Tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for table in tables %}
+            <tr>
+                <td>{{ table.TenBan }}</td>
+                <td>{{ table.LoaiBida }}</td>
+                <td>{{ table.TinhTrang }}</td>
+                <td>
+                    {% if table.TinhTrang == 'Có khách' %}
+                    <a href="/chitiethoadon/{{ table.MaBan }}"class="edit-button">Chi tiết</a>
+                    {% else %}
+                        
+                        <form action="{{ url_for('quan_ly_ban.tao_hoadon') }}" method="POST" style="display:inline;">
+                            <input type="hidden" name="MaBan" value="{{ table.MaBan }}">
+                            <button type="submit">Bắt đầu</button>
+                        </form>
+                    {% endif %}
+                    
+                    <a href="/xoaban/{{ table.MaBan }}" class="delete-button" onclick="return confirm('Bạn có chắc muốn xóa bàn này?')">Xóa</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,67 @@
+<!-- khachhang.html -->
+{% extends 'base.html' %}
+
+{% block title %}
+    Quản Lí Khách Hàng
+{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/css_khach_hang/khachhang.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    <script>
+        function validateSearchForm(event) {
+            const searchInput = document.querySelector('input[name="keyword"]');
+            if (searchInput.value.trim() === '') {
+                alert('Vui lòng nhập từ khóa tìm kiếm');
+                event.preventDefault(); // Ngăn chặn form submit
+            }
+        }
+    </script>
+ 
+
+{% endblock %}
+
+{% block content %}
+
+    <h1>Quản lý Khách Hàng</h1>
+    <div class="action-links">
+        <a href="/quan_ly_khach_hang.themkhachhang">Thêm Khách Hàng Mới</a>
+    </div>
+    <div class="search-container">
+        <!-- Form tìm kiếm -->
+        <form action="{{ url_for('quan_ly_khach_hang.quanlykhachhang') }}" method="GET" class="search-form" onsubmit="validateSearchForm(event)">
+            <input type="text" name="keyword" placeholder="Nhập từ khóa tìm kiếm...">
+            <button type="submit">Tìm kiếm</button>
+        </form>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Mã Khách Hàng</th>
+                <th>Tên Khách Hàng</th>
+                <th>Địa Chỉ</th>
+                <th>Số điện thoại</th>
+                <th>Email</th>
+                <th>Tùy chọn</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for khachhang in khachhangs %}
+            <tr>
+                <td>{{ khachhang.MaMember}}</td>
+                <td>{{ khachhang.TenMember }}</td>
+                <td>{{ khachhang.DiaChi }}</td>
+                <td>{{ khachhang.SoDienThoai }}</td>
+                <td>{{ khachhang.Email}}</td>
+                <td>
+                    <a href="{{ url_for('quan_ly_khach_hang.sua_khach_hang', MaMember=khachhang.MaMember) }}" class="edit-button">Sửa</a>
+                    <a href="/quan_ly_khach_hang.xoakhachhang/{{ khachhang.MaMember }}" class="delete-button" onclick="return confirm('Bạn có chắc muốn xóa khách hàng này?')">Xóa</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

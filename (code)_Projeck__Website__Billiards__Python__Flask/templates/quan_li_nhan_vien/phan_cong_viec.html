@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Phân công việc
+{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/css_nhan_vien/phan_cong_viec.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+{% endblock %}
+
+{% block content %}
+    <h1>Thông tin công việc và phạt</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Họ và tên</th>
+                <th>Công việc</th>
+                <th>Ngày làm</th>
+                <th>Giờ bắt đầu</th>
+                <th>Giờ kết thúc</th>
+                <th>Lý do phạt</th>
+                <th>Số tiền phạt</th>
+                <th>Chức năng</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in thong_tin %}
+                <tr>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>{{ row[4] }}</td>
+                    <td>{{ row[5] }}</td>
+                    <td>{{ row[6] }}</td>
+                    <td>{{ row[7] }}</td>
+                    <td>
+                        <form action="{{ url_for('quan_ly_nhan_vien.xoa_cong_viec', id=row[0]) }}" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa công việc này?')">Xóa</button>
+                          </form>
+                        <a href="{{ url_for('quan_ly_nhan_vien.sua_cong_viec', id=row[0]) }}" class="edit-button">Sửa</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="action-links">
+    <a href="{{ url_for('quan_ly_nhan_vien.them_cong_viec') }}">Thêm công việc mới</a>
+    <a href="{{ url_for('quan_ly_nhan_vien.tim_kiem_cong_viec') }}">Tìm Kiếm</a>
+    </div>
+    <a href="/quanlynhanvien" class="back-button">Quay lại</a>
+{% endblock %}

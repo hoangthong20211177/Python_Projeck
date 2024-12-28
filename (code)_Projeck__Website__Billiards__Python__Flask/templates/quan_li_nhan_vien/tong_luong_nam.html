@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Tổng lương năm
+{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/css_nhan_vien/tong_luong_nam.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+
+</head>
+<body>
+    <h1>Tổng lương theo năm</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Account ID</th>
+                <th>Tên Nhân Viên</th>
+                <th>Năm</th>
+                <th>Tổng lương cơ bản</th>
+                <th>Tổng Thưởng</th>
+                <th>Tổng tiền phạt</th>
+                <th>Tổng lương</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in tong_luong_nam %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>{{ row[4] }}</td>
+                    <td>{{ row[5] }}</td>
+                    <td>{{ row[6] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/quanlynhanvien" class="back-button">Quay lại</a>
+</body>
+</html>
+{% endblock %}

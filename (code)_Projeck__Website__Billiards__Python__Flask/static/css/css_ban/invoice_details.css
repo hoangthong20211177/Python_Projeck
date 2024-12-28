@@ -1,0 +1,176 @@
+/* Cập nhật nền và phông chữ chung cho trang */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fc;
+    margin: 0;
+    padding: 0;
+    color: #333;
+
+        background-image: url('../../images/nen8.jpg');
+        background-size: cover; /* Đảm bảo hình nền được phủ hết toàn bộ màn hình */
+    
+   
+    
+}
+
+/* Định dạng phần đầu trang (title) */
+h1 {
+    font-size: 2rem;
+    color: #00796b;
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Nút "Kết thúc" */
+button {
+    background-color: #d93300;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #004d40;
+}
+
+/* Định dạng phần bảng thông tin hóa đơn */
+.invoice-details {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 1200px;
+    background-color: #ffe4fed8;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Section riêng biệt cho các thông tin */
+.details-section {
+    margin-bottom: 30px;
+}
+
+/* Định dạng tiêu đề mỗi section */
+.details-section h2 {
+    font-size: 1.5rem;
+    color: #004d40;
+    margin-bottom: 10px;
+}
+
+/* Cải tiến bảng */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 1rem;
+}
+
+th, td {
+    padding: 12px 20px;
+    border: 1px solid #ffe5e5dd;
+    text-align: left;
+}
+
+th {
+    background-color: #96ecffef;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}
+
+td {
+    background-color: #f9f9f9;
+}
+
+tr:nth-child(even) td {
+    background-color: #f1f1f1;
+}
+
+/* Cải tiến khu vực danh sách sản phẩm */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    background-color: #cdf6fb;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.product-item {
+    background-color: #de6868;
+    border: 1px solid #915858;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.product-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.product-item a {
+    text-decoration: none;
+    color: #00796b;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.product-item a:hover {
+    color: #004d40;
+}
+
+/* Liên kết quay lại */
+a {
+    display: inline-block;
+    margin-top: 20px;
+    color: #00352f;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #004d40;
+}
+
+/* Responsive: Đảm bảo hiển thị tốt trên các thiết bị di động */
+@media (max-width: 768px) {
+    .invoice-details {
+        padding: 15px;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    background-color: #e0f7fa; /* Màu nền xanh nhạt */
+    padding: 20px; /* Phần lề bao quanh */
+}
+
+.product-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    background-color: #fff; /* Màu nền trắng cho sản phẩm */
+    transition: background-color 0.3s ease; /* Hiệu ứng chuyển đổi màu nền */
+}
+
+.product-item:hover {
+    background-color: #f0f0f0; /* Màu nền xám nhạt khi di chuột vào */
+}
+
+.product-item a {
+    text-decoration: none;
+    color: #333;
+}
+

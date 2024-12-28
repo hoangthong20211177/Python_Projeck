@@ -1,0 +1,78 @@
+body {
+    background-image: url('../images/nen13.jpg');
+
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ nhẹ cho bảng */
+    transition: all 0.3s ease-in-out; /* Thêm hiệu ứng cho bảng */
+}
+
+table th, table td {
+    border: 1px solid #1b3235;
+    padding: 10px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Thêm hiệu ứng thay đổi màu nền và chuyển động */
+}
+
+table th {
+    background-color: #fff280;
+}
+
+table td {
+    background-color: #fff0f0;
+}
+
+table tr:hover td {
+    background-color: #64f0ff; /* Màu nền khi di chuột qua một hàng */
+    transform: scale(1.05); /* Làm phóng to hàng khi di chuột qua */
+}
+
+table th:hover {
+    background-color: #ddd; /* Thay đổi màu nền của tiêu đề khi di chuột qua */
+}
+
+.action-links {
+    margin-bottom: 20px;
+}
+
+.action-links a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.action-links a:hover {
+    background-color: #0056b3;
+    transform: scale(1.05); /* Làm nút phóng to khi di chuột qua */
+}
+
+.edit-button {
+    background-color: #28a745;
+}
+
+.delete-button {
+    background-color: #dc3545;
+}
+
+.edit-button, .delete-button {
+    display: inline-block;
+    padding: 8px 12px;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-right: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.edit-button:hover, .delete-button:hover {
+    filter: brightness(90%);
+    transform: scale(1.1); /* Làm nút phóng to khi di chuột qua */
+}
